@@ -1,16 +1,10 @@
-# Aturkost Backend (Clean NestJS Scaffold)
+# AturKost · Backend
 
-## Cara Menjalankan
-1. Salin `.env.example` menjadi `.env`:
-   ```bash
-   cp .env.example .env
-   ```
-2. Install dependencies:
-   ```bash
-   npm install
-   ```
-3. Jalankan server dalam mode development:
-   ```bash
-   npm run start:dev
-   ```
-Server berjalan di `http://localhost:3001/api`.
+REST API NestJS + Prisma + PostgreSQL untuk AturKost. Daftar endpoint dan panduan lengkap ada di [README utama](../README.md).
+
+```bash
+cp .env.example .env   # isi DATABASE_URL dan JWT_SECRET
+npm install
+npm run db:deploy      # buat tabel
+npm run start:dev      # http://localhost:3001/api
+```
