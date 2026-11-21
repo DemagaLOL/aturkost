@@ -1,12 +1,14 @@
-import { Geist, Geist_Mono } from "next/font/google";
+import { Bricolage_Grotesque } from "next/font/google";
 import "@/styles/globals.css";
 
-const sans = Geist({ subsets: ["latin"], variable: "--font-sans" });
-const mono = Geist_Mono({ subsets: ["latin"], variable: "--font-mono" });
+const bricolage = Bricolage_Grotesque({
+  subsets: ["latin"],
+  variable: "--font-bricolage",
+});
 
 export default function App({ Component, pageProps }) {
   return (
-    <div className={`app ${sans.variable} ${mono.variable}`}>
+    <div className={`app ${bricolage.variable}`}>
       <Component {...pageProps} />
     </div>
   );

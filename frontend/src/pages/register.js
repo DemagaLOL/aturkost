@@ -1,7 +1,7 @@
-import Head from "next/head";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useState } from "react";
+import AuthLayout from "@/components/AuthLayout";
 import { authApi } from "@/lib/api";
 import { saveToken } from "@/lib/session";
 import styles from "@/styles/auth.module.css";
@@ -33,66 +33,65 @@ export default function RegisterPage() {
   }
 
   return (
-    <main className={styles.wrap}>
-      <Head>
-        <title>Daftar · AturKost</title>
-      </Head>
-      <div className={styles.card}>
-        <Link href="/" className={styles.brand}>
-          AturKost
-        </Link>
-        <h1 className={styles.title}>Buat akun</h1>
-        <p className={styles.subtitle}>
-          Satu akun untuk semua barang di kostmu.
-        </p>
-
-        <form className={styles.form} onSubmit={submit}>
-          {error && <p className="error">{error}</p>}
-          <div className="field">
-            <label htmlFor="name">Nama</label>
-            <input
-              id="name"
-              name="name"
-              value={form.name}
-              onChange={change}
-              required
-              autoComplete="name"
-            />
-          </div>
-          <div className="field">
-            <label htmlFor="email">Email</label>
-            <input
-              id="email"
-              name="email"
-              type="email"
-              value={form.email}
-              onChange={change}
-              required
-              autoComplete="email"
-            />
-          </div>
-          <div className="field">
-            <label htmlFor="password">Password</label>
-            <input
-              id="password"
-              name="password"
-              type="password"
-              value={form.password}
-              onChange={change}
-              required
-              minLength={6}
-              autoComplete="new-password"
-            />
-          </div>
-          <button className="btn" disabled={loading}>
-            {loading ? "Memproses..." : "Daftar"}
-          </button>
-        </form>
-
-        <p className={styles.switch}>
+    <AuthLayout
+      title="Daftar"
+      heading="Buat akun baru"
+      subtitle="Gratis. Cukup nama, email, dan password."
+      footer={
+        <>
           Sudah punya akun? <Link href="/login">Masuk</Link>
-        </p>
-      </div>
-    </main>
+        </>
+      }
+    >
+      <form className={styles.form} onSubmit={submit}>
+        {error && (
+          <p className="error" role="alert">
+            {error}
+          </p>
+        )}
+        <div className="field">
+          <label htmlFor="name">Nama</label>
+          <input
+            id="name"
+            name="name"
+            value={form.name}
+            onChange={change}
+            required
+            autoComplete="name"
+            placeholder="Nama panggilan"
+          />
+        </div>
+        <div className="field">
+          <label htmlFor="email">Email</label>
+          <input
+            id="email"
+            name="email"
+            type="email"
+            value={form.email}
+            onChange={change}
+            required
+            autoComplete="email"
+            placeholder="nama@email.com"
+          />
+        </div>
+        <div className="field">
+          <label htmlFor="password">Password</label>
+          <input
+            id="password"
+            name="password"
+            type="password"
+            value={form.password}
+            onChange={change}
+            required
+            minLength={6}
+            autoComplete="new-password"
+            placeholder="Minimal 6 karakter"
+          />
+        </div>
+        <button className="btn" disabled={loading}>
+          {loading ? "Memproses..." : "Buat akun"}
+        </button>
+      </form>
+    </AuthLayout>
   );
 }

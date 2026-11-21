@@ -27,7 +27,7 @@
 }
 
 .hero p {
-  color: var(--muted);
+  color: var(--text-muted);
   font-size: 17px;
   margin-bottom: 28px;
 }
@@ -39,8 +39,8 @@
 }
 
 .sample {
-  border-top: 2px solid var(--ink);
-  background: var(--card);
+  border-top: 2px solid var(--color-primary);
+  background: var(--bg-card);
 }
 
 .row {
@@ -50,15 +50,15 @@
   padding: 12px 14px;
   border-bottom: 1px solid var(--line);
   align-items: center;
-  font-size: 14px;
+  font-size: 16px;
 }
 
 .row span:first-child {
-  color: var(--muted);
+  color: var(--text-muted);
 }
 
 .caption {
   margin-top: 10px;
-  font-size: 13px;
-  color: var(--muted);
+  font-size: 15px;
+  color: var(--text-muted);
 }

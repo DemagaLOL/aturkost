@@ -49,8 +49,11 @@ export default function ItemForm({ item, onSubmit, onCancel }) {
 
   return (
     <form className={styles.form} onSubmit={submit}>
-      <h2>{item ? `Ubah ${item.nama}` : "Barang baru"}</h2>
-      {error && <p className="error">{error}</p>}
+      {error && (
+        <p className="error" role="alert">
+          {error}
+        </p>
+      )}
 
       <div className={styles.formGrid}>
         <div className={`field ${styles.span2}`}>
@@ -62,9 +65,11 @@ export default function ItemForm({ item, onSubmit, onCancel }) {
             onChange={change}
             required
             maxLength={100}
-            placeholder="Rice cooker"
+            placeholder="Contoh: Rice cooker"
+            autoFocus
           />
         </div>
+
         <div className="field">
           <label htmlFor="kategori">Kategori</label>
           <select
@@ -78,6 +83,7 @@ export default function ItemForm({ item, onSubmit, onCancel }) {
             ))}
           </select>
         </div>
+
         <div className="field">
           <label htmlFor="jumlah">Jumlah</label>
           <input
@@ -90,30 +96,40 @@ export default function ItemForm({ item, onSubmit, onCancel }) {
             required
           />
         </div>
-        <div className="field">
-          <label htmlFor="kondisi">Kondisi</label>
-          <select
-            id="kondisi"
-            name="kondisi"
-            value={form.kondisi}
-            onChange={change}
-          >
+
+        <fieldset className={`${styles.span2} ${styles.kondisiGroup}`}>
+          <legend>Kondisi</legend>
+          <div className={styles.segmented}>
             {KONDISI.map((k) => (
-              <option key={k}>{k}</option>
+              <label
+                key={k}
+                className={form.kondisi === k ? styles.segActive : ""}
+              >
+                <input
+                  type="radio"
+                  name="kondisi"
+                  value={k}
+                  checked={form.kondisi === k}
+                  onChange={change}
+                />
+                {k}
+              </label>
             ))}
-          </select>
-        </div>
-        <div className="field">
-          <label htmlFor="lokasi">Lokasi</label>
+          </div>
+        </fieldset>
+
+        <div className={`field ${styles.span2}`}>
+          <label htmlFor="lokasi">Lokasi di kamar</label>
           <input
             id="lokasi"
             name="lokasi"
             value={form.lokasi}
             onChange={change}
             maxLength={100}
-            placeholder="Bawah meja"
+            placeholder="Contoh: Laci meja belajar"
           />
         </div>
+
         <div className={`field ${styles.span2}`}>
           <label htmlFor="catatan">Catatan</label>
           <textarea
@@ -122,6 +138,7 @@ export default function ItemForm({ item, onSubmit, onCancel }) {
             value={form.catatan}
             onChange={change}
             maxLength={500}
+            placeholder="Opsional"
           />
         </div>
       </div>
@@ -131,7 +148,11 @@ export default function ItemForm({ item, onSubmit, onCancel }) {
           Batal
         </button>
         <button className="btn" disabled={saving}>
-          {saving ? "Menyimpan..." : "Simpan"}
+          {saving
+            ? "Menyimpan..."
+            : item
+              ? "Simpan perubahan"
+              : "Tambah barang"}
         </button>
       </div>
     </form>

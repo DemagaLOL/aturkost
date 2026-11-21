@@ -1,16 +1,32 @@
 :root {
-  --paper: #f3efe6;
-  --card: #fbf9f4;
-  --ink: #1f1e1b;
-  --muted: #6b675e;
-  --line: #d9d3c5;
-  --accent: #2f5d50;
-  --accent-soft: #dde7e2;
-  --danger: #a3402a;
-  --danger-soft: #f2dfd8;
-  --warn: #8a6a1c;
-  --warn-soft: #f1e6c8;
-  --radius: 6px;
+  /* Primary & brand blues */
+  --color-primary: #2557e6;
+  --color-primary-light: #5985ff;
+  --color-primary-dark: #2352d8;
+  --color-slate-blue: #4a658a;
+  --gradient-brand: linear-gradient(90deg, #2557e6 0%, #5985ff 100%);
+
+  /* Neutrals */
+  --bg-page: #f4f5f7;
+  --bg-card: #ffffff;
+  --text-main: #1e2538;
+  --text-muted: #4a658a;
+  --text-inverse: #ffffff;
+
+  /* Turunan untuk UI */
+  --line: #e1e5ee;
+  --primary-soft: #eaf0ff;
+  --ok: #1f7a4d;
+  --ok-soft: #e3f4ea;
+  --warn: #8a5a00;
+  --warn-soft: #fff2d6;
+  --danger: #c2362b;
+  --danger-soft: #fde8e6;
+
+  --radius: 10px;
+  --radius-lg: 16px;
+  --shadow: 0 1px 2px rgba(30, 37, 56, 0.06), 0 4px 16px rgba(30, 37, 56, 0.06);
+  --shadow-lg: 0 24px 64px rgba(30, 37, 56, 0.18);
 }
 
 * {
@@ -20,15 +36,15 @@
 }
 
 body {
-  background: var(--paper);
-  color: var(--ink);
-  font-size: 15px;
+  background: var(--bg-page);
+  color: var(--text-main);
+  font-size: 16px;
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
 }
 
 .app {
-  font-family: var(--font-sans), system-ui, sans-serif;
+  font-family: var(--font-bricolage), system-ui, sans-serif;
   min-height: 100vh;
 }
 
@@ -45,81 +61,113 @@ textarea {
 }
 
 .mono {
-  font-family: var(--font-mono), ui-monospace, monospace;
   font-variant-numeric: tabular-nums;
+}
+
+.gradient-text {
+  background: var(--gradient-brand);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
 
 .field {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 6px;
 }
 
 .field label {
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
 }
 
 .field input,
 .field select,
 .field textarea {
-  background: #fff;
+  background: var(--bg-card);
   border: 1px solid var(--line);
   border-radius: var(--radius);
-  padding: 9px 11px;
+  padding: 11px 13px;
   width: 100%;
+  transition:
+    border-color 0.15s,
+    box-shadow 0.15s;
 }
 
 .field textarea {
   resize: vertical;
-  min-height: 70px;
+  min-height: 80px;
 }
 
 .field input:focus,
 .field select:focus,
 .field textarea:focus {
-  outline: 2px solid var(--accent);
-  outline-offset: -1px;
-  border-color: var(--accent);
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 4px var(--primary-soft);
 }
 
 .btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  border: 1px solid var(--ink);
-  background: var(--ink);
-  color: var(--paper);
+  gap: 8px;
+  border: 1px solid var(--color-primary);
+  background: var(--color-primary);
+  color: var(--text-inverse);
   border-radius: var(--radius);
-  padding: 9px 16px;
+  padding: 11px 18px;
   font-weight: 600;
   cursor: pointer;
   text-decoration: none;
+  transition:
+    background 0.15s,
+    transform 0.1s;
 }
 
 .btn:hover {
-  background: #000;
+  background: var(--color-primary-dark);
+}
+
+.btn:active {
+  transform: translateY(1px);
 }
 
 .btn:disabled {
-  opacity: 0.55;
+  opacity: 0.6;
   cursor: default;
 }
 
 .btn-ghost {
-  background: transparent;
-  color: var(--ink);
+  background: var(--bg-card);
+  color: var(--text-main);
   border-color: var(--line);
 }
 
 .btn-ghost:hover {
-  background: var(--card);
+  background: var(--primary-soft);
+  border-color: var(--color-primary-light);
+}
+
+.btn-danger {
+  background: var(--danger);
+  border-color: var(--danger);
+}
+
+.btn-danger:hover {
+  background: #a52c22;
 }
 
 .error {
   background: var(--danger-soft);
   color: var(--danger);
   border-radius: var(--radius);
-  padding: 9px 12px;
-  font-size: 14px;
+  padding: 10px 14px;
+  font-size: 15px;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
 }
