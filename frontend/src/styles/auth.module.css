@@ -1,0 +1,50 @@
+.wrap {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 24px 16px;
+}
+
+.card {
+  width: 100%;
+  max-width: 380px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 28px 24px;
+}
+
+.brand {
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.title {
+  font-size: 22px;
+  margin: 18px 0 4px;
+}
+
+.subtitle {
+  color: var(--muted);
+  font-size: 14px;
+  margin-bottom: 20px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.switch {
+  margin-top: 18px;
+  font-size: 14px;
+  color: var(--muted);
+}
+
+.switch a {
+  color: var(--ink);
+  font-weight: 600;
+}

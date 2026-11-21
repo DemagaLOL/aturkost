@@ -12,7 +12,8 @@ async function bootstrap() {
 
   // Aktifkan CORS agar frontend Next.js dapat mengakses API
   app.enableCors({
-    origin: configService.get<string>('FRONTEND_URL') || 'http://localhost:3000',
+    origin:
+      configService.get<string>('FRONTEND_URL') || 'http://localhost:3000',
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
     credentials: true,
   });
